@@ -1,34 +1,23 @@
 var getNumbers = function( n ) {
-	var promise = new Promise( function( resolve, reject ) {
-		if( n ) {
-			var numbers = [];
-			for( var i = 1; i < n; i++ ) {
-				if( i % 3 == 0 || i % 5 == 0 ) {
-					numbers.push( i );
-				}
-			}
-			resolve( numbers );
-		} else {
-			reject( 'there is no range of number' );
+	n = n || 0;
+	var numbers = [];
+	for( var i = 1; i < n; i++ ) {
+		if( i % 3 == 0 || i % 5 == 0 ) {
+			numbers.push( i );
 		}
-	});
-	return promise;
+	}
+	return numbers;
 };
 
 var sumNumbers = function( numbers ) {
-	var promise = new Promise( function( resolve, reject ) {
-		if( numbers ) {	
-			var sum = 0;
-			numbers.forEach(function( number ) {
-				sum += number;
-			});
-			resolve( sum );
-		} else {
-			reject( 'there is no array of numbers to sum' );
-		}
+	numbers = numbers || [];
+	var sum = 0;
+	numbers.forEach(function( number ) {
+		sum += number;
 	});
-	return promise;
+	return sum;
 };
 
 var n = 1000;
-getNumbers( n ).then( sumNumbers ).then( console.log );
+
+console.log( sumNumbers( getNumbers( n ) ) );
